@@ -2,9 +2,10 @@
 '''
 DGPS client to work with Emlid ReachRTK (for example)
 Configure ReachView like so:
-Position output:
+Position output: off
+Position input: off
+Base mode:
 TCP, Role: Server, address: localhost, Port: 9000, Format: ERB
-You can turn correction input off (optionally)
 
 
 '''
@@ -17,6 +18,7 @@ from MAVProxy.modules.lib import mp_module
 class DGPSClientModule(mp_module.MPModule):
     def __init__(self, mpstate):
         super(DGPSClientModule, self).__init__(mpstate, "DGPSClient", "DGPSClient injection support")
+        print "Loading DGPS module"
         self.inject_seq_nr = 0
         # self.connect_to_rtcm_base("10.42.3.43", 9000)
         self.connect_to_rtcm_base("127.0.0.1", 9000)
