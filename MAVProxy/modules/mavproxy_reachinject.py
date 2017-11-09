@@ -28,11 +28,9 @@ class DGPSClientModule(mp_module.MPModule):
             self.base_conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.base_conn.connect((ip, port))
         except:
-            print
-            "ERROR: could not connect to RTCM base"
+            print "ERROR: could not connect to RTCM base"
         else:
-            print
-            "Connected to base to get RTCM data"
+            print "Connected to base to get RTCM data"
 
     def idle_task(self):
         '''called in idle time'''
@@ -42,9 +40,6 @@ class DGPSClientModule(mp_module.MPModule):
             if e.errno in [errno.EAGAIN, errno.EWOULDBLOCK]:
                 return
             raise
-        except err:
-            print
-            err
         try:
             self.send_rtcm_msg(data)
         except Exception, e:
@@ -54,8 +49,7 @@ class DGPSClientModule(mp_module.MPModule):
         msglen = 180;
 
         if (len(data) > msglen * 4):
-            print
-            "DGPS: Message too large", len(data)
+            print "DGPS: Message too large", len(data)
             return
 
         # How many messages will we send?
@@ -82,8 +76,7 @@ class DGPSClientModule(mp_module.MPModule):
             amount = min(len(data) - a * msglen, msglen)
             datachunk = data[a * msglen: a * msglen + amount]
 
-            print
-            "sending RTCM data", bin(flags), len(datachunk), [str(n) for n in datachunk]
+            print "sending RTCM data", bin(flags), len(datachunk), [str(n) for n in datachunk]
             self.master.mav.gps_rtcm_data_send(
                 flags,
                 len(datachunk),
