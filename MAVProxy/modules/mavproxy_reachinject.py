@@ -12,7 +12,7 @@ Base mode: off
 Position output: Serial, 38k4, ERB
 Position input: Serial, 38k4, RTCM4
 
-Click the green 'Connected to /dev/ttyMFD2' to see if
+Click the green 'Connected to /dev/ttyMFD2' to see if rtcm data is coming in.
 '''
 
 import socket, errno
