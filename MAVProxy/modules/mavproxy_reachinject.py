@@ -7,11 +7,16 @@ Position input: off
 Base mode:
 TCP, Role: Server, address: localhost, Port: 9000, Format: ERB
 
+Configure Reachiew ON THE ROVER like so:
+Base mode: off
+Position output: Serial, 38k4, ERB
+Position input: Serial, 38k4, RTCM4
 
+Click the green 'Connected to /dev/ttyMFD2' to see if
 '''
 
 import socket, errno
-from pymavlink import mavutil
+#from pymavlink import mavutil
 from MAVProxy.modules.lib import mp_module
 
 
@@ -20,7 +25,6 @@ class DGPSClientModule(mp_module.MPModule):
         super(DGPSClientModule, self).__init__(mpstate, "DGPSClient", "DGPSClient injection support")
         print "Loading DGPS module"
         self.inject_seq_nr = 0
-        # self.connect_to_rtcm_base("10.42.3.43", 9000)
         self.connect_to_rtcm_base("127.0.0.1", 9000)
 
     def connect_to_rtcm_base(self, ip, port):
@@ -76,7 +80,7 @@ class DGPSClientModule(mp_module.MPModule):
             amount = min(len(data) - a * msglen, msglen)
             datachunk = data[a * msglen: a * msglen + amount]
 
-            print "sending RTCM data", bin(flags), len(datachunk), [str(n) for n in datachunk]
+            print("Sending DGPS RTCM3 data flags {0}, length {1}".format(bin(flags), len(datachunk)))
             self.master.mav.gps_rtcm_data_send(
                 flags,
                 len(datachunk),
