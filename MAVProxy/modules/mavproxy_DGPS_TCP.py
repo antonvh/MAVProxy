@@ -50,7 +50,7 @@ class DGPSClientModule(mp_module.MPModule):
             print "DGPS: GPS Inject Failed:", e
 
     def send_rtcm_msg(self, data):
-        msglen = 180;
+        msglen = 89
 
         if (len(data) > msglen * 4):
             print "DGPS: Message too large", len(data)
@@ -80,7 +80,7 @@ class DGPSClientModule(mp_module.MPModule):
             amount = min(len(data) - a * msglen, msglen)
             datachunk = data[a * msglen: a * msglen + amount]
 
-            print("Sending DGPS RTCM3 data flags {0}, length {1}".format(bin(flags), len(datachunk)))
+            print("Sending DGPS RTCM3 data flags {0}, length {1}".format(bin(flags), len(data)))
             self.master.mav.gps_rtcm_data_send(
                 flags,
                 len(datachunk),
