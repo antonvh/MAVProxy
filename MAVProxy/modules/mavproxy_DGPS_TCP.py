@@ -31,6 +31,7 @@ class DGPSClientModule(mp_module.MPModule):
         try:
             self.base_conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.base_conn.connect((ip, port))
+            self.base_conn.settimeout(0.2)
         except:
             print "ERROR: could not connect to RTCM base"
         else:
@@ -39,8 +40,8 @@ class DGPSClientModule(mp_module.MPModule):
     def idle_task(self):
         '''called in idle time'''
         try:
-            #data = self.base_conn.recv(1024)  # Attempt to read up to 1024 bytes.
-            data = "blabla"
+            data = self.base_conn.recv(1024)  # Attempt to read up to 1024 bytes.
+            #data = "blabla"
             #time.sleep(12)
             # while True: pass
         except socket.error as e:
