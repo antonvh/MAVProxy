@@ -15,7 +15,7 @@ Position input: Serial, 38k4, RTCM4
 Click the green 'Connected to /dev/ttyMFD2' to see if rtcm data is coming in.
 '''
 
-import socket, errno
+import socket, errno, time
 #from pymavlink import mavutil
 from MAVProxy.modules.lib import mp_module
 
@@ -40,6 +40,9 @@ class DGPSClientModule(mp_module.MPModule):
         '''called in idle time'''
         try:
             data = self.base_conn.recv(1024)  # Attempt to read up to 1024 bytes.
+            #data = "blabla"
+            time.sleep(12)
+            # while True: pass
         except socket.error as e:
             if e.errno in [errno.EAGAIN, errno.EWOULDBLOCK]:
                 return
