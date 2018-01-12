@@ -39,9 +39,9 @@ class DGPSClientModule(mp_module.MPModule):
     def idle_task(self):
         '''called in idle time'''
         try:
-            data = self.base_conn.recv(1024)  # Attempt to read up to 1024 bytes.
-            #data = "blabla"
-            time.sleep(12)
+            #data = self.base_conn.recv(1024)  # Attempt to read up to 1024 bytes.
+            data = "blabla"
+            #time.sleep(12)
             # while True: pass
         except socket.error as e:
             if e.errno in [errno.EAGAIN, errno.EWOULDBLOCK]:
