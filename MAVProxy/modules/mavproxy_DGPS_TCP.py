@@ -53,7 +53,7 @@ class DGPSClientModule(mp_module.MPModule):
             print "DGPS: GPS Inject Failed:", e
 
     def send_rtcm_msg(self, data):
-        msglen = 89
+        msglen = 180
 
         if (len(data) > msglen * 4):
             print "DGPS: Message too large", len(data)
