@@ -274,7 +274,8 @@ class SRTMDownloader():
                 self.ftpfile = None
         except Exception as e:
             if not self.first_failure:
-                print("SRTM Download failed %s on server %s" % (filepath, self.server))
+                if self.mpstate.settings.moddebug > 1:
+                    print("SRTM Download failed %s on server %s" % (filepath, self.server))
                 self.first_failure = True
             pass
 

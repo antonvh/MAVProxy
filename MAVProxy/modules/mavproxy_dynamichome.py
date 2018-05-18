@@ -13,7 +13,7 @@ class DynamicHomeModule(mp_module.MPModule):
         self.base_lat = None
         self.base_lon = None
         self.base_alt = None
-        self.connect_to_base("10.42.3.43", 9001)
+        self.connect_to_base("127.0.0.1", 9001)
 
     def connect_to_base(self, ip, port):
         try:
