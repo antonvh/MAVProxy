@@ -19,6 +19,7 @@ class DynamicHomeModule(mp_module.MPModule):
         try:
             self.base_conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.base_conn.connect((ip, port))
+            self.base_conn.settimeout(0.2)
         except:
             print "ERROR: could not connect to base"
         else:
