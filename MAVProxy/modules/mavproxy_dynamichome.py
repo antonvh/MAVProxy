@@ -9,7 +9,7 @@ from MAVProxy.modules.lib import mp_module
 
 class DynamicHomeModule(mp_module.MPModule):
     def __init__(self, mpstate):
-        super(DynamicBaseModule, self).__init__(mpstate, "DynamicHome", "DynamicHome injection support")
+        super(DynamicHomeModule, self).__init__(mpstate, "DynamicHome", "DynamicHome injection support")
         self.base_lat = None
         self.base_lon = None
         self.base_alt = None
@@ -65,4 +65,4 @@ class DynamicHomeModule(mp_module.MPModule):
 
 def init(mpstate):
     '''initialise module'''
-    return DynamicBaseModule(mpstate)
+    return DynamicHomeModule(mpstate)
